@@ -1,0 +1,38 @@
+
+model Order {
+    fields {
+        status OrderStatus @default(OrderStatus.New)
+    }
+
+    actions {
+        create createOrder()
+        get getOrder(id)
+        list listOrders()
+        update approveOrder(id) {
+            @set(order.status = OrderStatus.Approved)
+            @permission(roles: [OrderApprover])
+        }
+    }
+
+    @permission(expression: ctx.isAuthenticated, actions: [create, get, list, update])
+}
+
+enum OrderStatus {
+    New
+    Approved
+    Dispatched
+}
+
+extend model User {
+    fields {
+        name Text?
+    }
+}
+
+role OrderApprover {}
+
+team Sales {
+    roles {
+        OrderApprover
+    }
+}
