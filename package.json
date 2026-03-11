@@ -1,8 +1,8 @@
 {
   "name": ".",
   "dependencies": {
-    "@teamkeel/functions-runtime": "file:../../conductor/workspaces/keel/baton-rouge-v1/packages/functions-runtime",
-    "@teamkeel/testing-runtime": "file:../../conductor/workspaces/keel/baton-rouge-v1/packages/testing-runtime",
+    "@teamkeel/functions-runtime": "^0.444.0",
+    "@teamkeel/testing-runtime": "^0.444.0",
     "kysely": "^0.27.6",
     "node-fetch": "^3.3.2"
   },

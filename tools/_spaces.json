@@ -1,0 +1,37 @@
+[
+  {
+    "id": "space-test",
+    "name": "test",
+    "icon": "language",
+    "display_order": 0,
+    "hidden": false,
+    "actions": [
+      {
+        "id": "action-create-order",
+        "link": {
+          "tool_id": "create-order",
+          "title": "Create order",
+          "display_order": 0
+        },
+        "hidden": false
+      }
+    ],
+    "groups": null,
+    "links": null,
+    "metrics": null,
+    "topics": [
+      {
+        "id": "topic-approve-order",
+        "topic_name": "ApproveOrder",
+        "display_order": 0,
+        "hidden": false
+      },
+      {
+        "id": "topic-dispatch-order",
+        "topic_name": "DispatchOrder",
+        "display_order": 0,
+        "hidden": false
+      }
+    ]
+  }
+]

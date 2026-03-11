@@ -1,4 +1,3 @@
-
 model Order {
     fields {
         status OrderStatus @default(OrderStatus.New)
@@ -8,13 +7,32 @@ model Order {
         create createOrder()
         get getOrder(id)
         list listOrders()
-        update approveOrder(id) {
-            @set(order.status = OrderStatus.Approved)
-            @permission(roles: [OrderApprover])
-        }
     }
 
-    @permission(expression: ctx.isAuthenticated, actions: [create, get, list, update])
+    @on([create], newOrder)
+    @on([update], updateOrder)
+
+    @permission(
+        expression: ctx.isAuthenticated,
+        actions: [create, get, list, update]
+    )
+}
+
+
+task ApproveOrder {
+    fields {
+        order Order
+    }
+
+    @permission(expression: true)
+}
+
+task DispatchOrder {
+    fields {
+        order Order
+    }
+
+    @permission(expression: true)
 }
 
 enum OrderStatus {
@@ -23,16 +41,14 @@ enum OrderStatus {
     Dispatched
 }
 
-extend model User {
-    fields {
-        name Text?
-    }
-}
-
 role OrderApprover {}
 
 team Sales {
-    roles {
-        OrderApprover
-    }
+  roles {
+    OrderApprover
+  }
+}
+
+routes {
+    post("/webhook", myWebhook)
 }
