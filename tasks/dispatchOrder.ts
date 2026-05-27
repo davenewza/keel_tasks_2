@@ -1,10 +1,8 @@
-import { DispatchOrder, FlowConfig, models, OrderStatus } from '@teamkeel/sdk';
+import { DispatchOrder, models, OrderStatus } from '@teamkeel/sdk';
 
-const config = {
-	// See https://docs.keel.so/flows for options
-} as const satisfies FlowConfig;
 
-export default DispatchOrder(config, async (ctx, task) => {
+
+export default DispatchOrder({}, async (ctx, task) => {
 	const order = await models.order.findOne({ id: task.orderId });
 
 	if (!order) {

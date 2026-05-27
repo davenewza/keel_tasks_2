@@ -41,13 +41,19 @@ enum OrderStatus {
     Dispatched
 }
 
-role OrderApprover {}
+role OrderApprover {
+    domains {
+        "keel.xyz"
+    }
+}
 
 team Sales {
   roles {
     OrderApprover
   }
 }
+
+
 
 routes {
     post("/webhook", myWebhook)

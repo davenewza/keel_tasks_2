@@ -2,11 +2,13 @@
   "compilerOptions": {
     "allowJs": true,
     "esModuleInterop": true,
+    "ignoreDeprecations": "6.0",
     "lib": [
-      "ES2016",
+      "ES2022",
       "DOM"
     ],
     "moduleResolution": "node",
+    "noImplicitAny": false,
     "paths": {
       "@teamkeel/sdk": [
         "./.build/sdk"
@@ -18,7 +20,7 @@
     "resolveJsonModule": true,
     "skipLibCheck": true,
     "strictNullChecks": true,
-    "target": "ES2016",
+    "target": "ES2022",
     "types": [
       "node"
     ]
@@ -27,6 +29,7 @@
     "node_modules"
   ],
   "include": [
-    "**/*.ts"
+    "**/*.ts",
+    ".build/**/*.ts"
   ]
 }

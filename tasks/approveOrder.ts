@@ -1,10 +1,7 @@
-import { ApproveOrder, FlowConfig, models, OrderStatus } from '@teamkeel/sdk';
+import { ApproveOrder, models, OrderStatus } from '@teamkeel/sdk';
 
-const config = {
-	// See https://docs.keel.so/flows for options
-} as const satisfies FlowConfig;
 
-export default ApproveOrder(config, async (ctx, task) => {
+export default ApproveOrder({}, async (ctx, task) => {
 	const order = await models.order.findOne({ id: task.orderId });
 
 	if (!order) {
