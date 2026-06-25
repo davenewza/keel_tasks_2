@@ -1,6 +1,5 @@
 import { UpdateOrder, tasks, models, OrderStatus } from '@teamkeel/sdk';
 
-// To learn more about events and subscribers, visit https://docs.keel.so/events
 export default UpdateOrder(async (ctx, event) => {
     const order = await models.order.findOne({ id: event.target.id });
 
@@ -8,5 +7,11 @@ export default UpdateOrder(async (ctx, event) => {
         throw new Error("order does not exist");
     }
 
-    await tasks.dispatchOrder.create({ orderId: order.id });
+    if (order.status == OrderStatus.Approved) {
+        const items = await models.orderItem.findMany({ where: { orderId: event.target.id } });
+
+        for (const item of items) {
+            await tasks.pickItem.create({ orderId: event.target.id, itemId: item.id });
+        }
+    }
 });
