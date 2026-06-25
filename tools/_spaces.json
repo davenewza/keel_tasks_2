@@ -31,6 +31,20 @@
         "topic_name": "DispatchOrder",
         "display_order": 0,
         "hidden": false
+      },
+      {
+        "id": "topic-pick-item",
+        "topic_name": "PickItem",
+        "display_order": 0,
+        "hidden": false
+      }
+    ],
+    "charts": [
+      {
+        "id": "chart-attach-chart-3-fc-sl-lvip-w-nicz-pmec-bm-4-ho-5-zo-d",
+        "chart_id": "chart_3FcSLLvipWNiczPmecBM4HO5zoD",
+        "display_order": 0,
+        "hidden": false
       }
     ]
   }

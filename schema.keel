@@ -1,16 +1,33 @@
 model Order {
     fields {
         status OrderStatus @default(OrderStatus.New)
+        items OrderItem[]
     }
 
     actions {
-        create createOrder()
+        create createOrder() with (items.quantity, items.product)
         get getOrder(id)
         list listOrders()
     }
 
     @on([create], newOrder)
     @on([update], updateOrder)
+
+    @permission(
+        expression: ctx.isAuthenticated,
+        actions: [create, get, list, update]
+    )
+
+    @permission(roles: [OrderApprover], actions: [create, get, list, update])
+}
+
+model OrderItem {
+    fields {
+        order Order
+        quantity Text
+        product Text
+        isPicked Boolean @default(false)
+    }
 
     @permission(
         expression: ctx.isAuthenticated,
@@ -23,6 +40,17 @@ task ApproveOrder {
     fields {
         order Order
     }
+    @permission(expression: true)
+   // @permission(expression: true, actions: [ run])
+    //@permission(expression: false, actions: [manage])
+}
+
+task PickItem {
+    fields {
+        order Order
+        item OrderItem
+        product Text @computed(pickItem.item.quantity + " x " + pickItem.item.product)
+    }
 
     @permission(expression: true)
 }
@@ -31,8 +59,8 @@ task DispatchOrder {
     fields {
         order Order
     }
-
     @permission(expression: true)
+    //@permission(expression: true, actions: [manage, run])
 }
 
 enum OrderStatus {
