@@ -2,12 +2,12 @@
   "compilerOptions": {
     "allowJs": true,
     "esModuleInterop": true,
+    "ignoreDeprecations": "6.0",
     "lib": [
       "ES2022",
       "DOM"
     ],
-    "module": "ES2022",
-    "moduleResolution": "bundler",
+    "moduleResolution": "node",
     "noImplicitAny": false,
     "paths": {
       "@teamkeel/sdk": [

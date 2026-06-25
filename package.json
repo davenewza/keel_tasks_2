@@ -1,5 +1,5 @@
 {
-  "name": ".",
+  "name": "keel_tasks_2",
   "dependencies": {
     "@teamkeel/functions-runtime": "^0.460.1",
     "@teamkeel/testing-runtime": "^0.460.1",
@@ -7,7 +7,7 @@
   },
   "devDependencies": {
     "@types/node": "^25.5.0",
-    "tsx": "^4.19.3",
+    "tsx": "^4.21.0",
     "typescript": "^6.0.2",
     "vitest": "^4.1.1"
   }
